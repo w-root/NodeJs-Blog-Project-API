@@ -21,7 +21,7 @@ exports.addPost = (req, res) => {
     }
     try {
         Post.create(post)
-        res.status(200).json({ message: "eklendi" })
+        res.status(200).json({ message: "Eklendi" })
     } catch (error) {
         res.status(400).json(error)
     }
@@ -48,7 +48,7 @@ exports.getPostTags = async (req, res) => {
 
 exports.getUserPostsById = async (req, res) => {
     try {
-        const posts = await Post.find({user:req.params.id})
+        const posts = await Post.find({ user: req.params.id })
         res.status(200).json(posts)
     } catch (error) {
         res.status(400).json(error)
@@ -56,8 +56,8 @@ exports.getUserPostsById = async (req, res) => {
 }
 exports.getUserPostsByUsername = async (req, res) => {
     try {
-        const user = await User.findOne({username:req.params.username})
-        const posts = await Post.find({user:user._id})
+        const user = await User.findOne({ username: req.params.username })
+        const posts = await Post.find({ user: user._id })
         res.status(200).json(posts)
     } catch (error) {
         res.status(400).json(error)

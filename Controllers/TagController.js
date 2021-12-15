@@ -12,7 +12,7 @@ exports.getAllTag = async (req, res) => {
 exports.addTag = (req, res) => {
     try {
         Tag.create(req.body)
-        res.status(200).json({ message: 'eklendi' })
+        res.status(200).json({ message: 'Eklendi' })
     } catch (error) {
         res.status(400).json(error)
     }

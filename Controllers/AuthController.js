@@ -8,16 +8,16 @@ require('dotenv').config();
 
 exports.Signup = async (req, res) => {
     const { error } = SignupValidator.validate(req.body);
-
     if (error)
         res.status(400).json({ message: error.details[0].message })
+
     try {
         const user = { ...req.body, password: JwtHelper.CreatePasswordHash(req.body.password) }
         await User.create(user)
         res.status(200).json({ message: "Kayıt Başarıyla Gerçekleşti" })
     } catch (error) {
 
-        res.status(400).json({ message: "kayıt başarısız" })
+        res.status(400).json({ message: "Kayıt başarısız" })
     }
 }
 

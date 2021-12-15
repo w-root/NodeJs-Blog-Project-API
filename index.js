@@ -25,7 +25,7 @@ mongoose.connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-    .then(() => console.log("Veritabanına bağlandı"))
+    .then(() => console.log("Connected to database"))
     .catch(err => console.log(err))
 
 app.listen(port, () => {
