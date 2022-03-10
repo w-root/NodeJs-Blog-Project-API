@@ -12,7 +12,7 @@ exports.getPosts = async (req, res) => {
 }
 
 exports.addPost = (req, res) => {
-    const { error } = PostValidator.validate(req.body);
+    const { error } = PostValidator.validate(req.body)
     if (error)
         res.status(400).json({ message: error.details[0].message })
 
@@ -35,7 +35,6 @@ exports.getPost = async (req, res) => {
         res.status(400).json(error)
     }
 }
-
 
 exports.getPostTags = async (req, res) => {
     try {

@@ -1,13 +1,13 @@
 const User = require('../Models/User')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt')
 const SigninValidator = require('../Helpers/Validators/SigninValidator')
 const SignupValidator = require('../Helpers/Validators/SignupValidator')
 
 const JwtHelper = require('../Helpers/Jwt/JwtHelper')
-require('dotenv').config();
+require('dotenv').config()
 
 exports.Signup = async (req, res) => {
-    const { error } = SignupValidator.validate(req.body);
+    const { error } = SignupValidator.validate(req.body)
     if (error)
         res.status(400).json({ message: error.details[0].message })
 
@@ -16,13 +16,12 @@ exports.Signup = async (req, res) => {
         await User.create(user)
         res.status(200).json({ message: "Kayıt Başarıyla Gerçekleşti" })
     } catch (error) {
-
-        res.status(400).json({ message: "Kayıt başarısız" })
+        res.status(400).json({ message: "Kayıt başarısız", error })
     }
 }
 
 exports.Signin = async (req, res) => {
-    const { error } = SigninValidator.validate(req.body);
+    const { error } = SigninValidator.validate(req.body)
     if (error)
         res.status(400).json({ message: error.details[0].message })
 
@@ -30,7 +29,7 @@ exports.Signin = async (req, res) => {
     try {
         const user = await User.findOne({ email })
         if (!user)
-            res.status(401).json({ message: "Kullanıcı Bulunmadı" })
+            res.status(404).json({ message: "Kullanıcı Bulunmadı" })
 
         if (!bcrypt.compareSync(password, user.password))  //Girilen parolayı, veritabanındaki hashlenmiş parola ile bcrypt 
             res.status(400).json({ message: "Şifre yanlış" }) // paketinin içinde bulunan compare metodu ile kontrol ediyoruz.

@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
 exports.CreateToken = (user) => {
     const token = jwt.sign({
@@ -10,12 +9,12 @@ exports.CreateToken = (user) => {
         issuer: "www.blogemo.com",
         id: user._id
     }, process.env.SECRET_KEY)
-    return token;
+    return token
 }
 
 exports.CreatePasswordHash = (password) => {
-    const salt = bcrypt.genSaltSync(saltRounds);
-    const hashPassword = bcrypt.hashSync(password, salt);
+    const salt = bcrypt.genSaltSync(saltRounds)
+    const hashPassword = bcrypt.hashSync(password, salt)
     return hashPassword
 }
 

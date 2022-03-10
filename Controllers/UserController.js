@@ -9,8 +9,6 @@ exports.GetUserDetails = async (req, res) => {
     }
 }
 
-
-
 exports.UpdateUser = async (req, res) => {
     try {
         await User.findByIdAndUpdate(req.body.id, { ...req.body })
